@@ -1,65 +1,68 @@
-import { useEffect, useRef } from "react";
-import { Colors } from "../../styles/theme";
-import Chart from "chart.js/auto";
+// import { Colors } from "../../styles/theme";
+import React, { useEffect, useRef } from 'react';
+import Chart from 'chart.js/auto';
 
-// add props "labels" and "data" to this component
-const HorizontalBarChart = ({ labelsProp, dataProp }) => {
+const HorizontalBarChart = ({ data, labels }) => {
   const chartRef = useRef(null);
-  const chartInstance = useRef(null);
 
   useEffect(() => {
-    // Check if a chart instance already exists, and destroy it if it does
-    if (chartInstance.current) {
-      chartInstance.current.destroy();
+    const ctx = chartRef.current.getContext('2d');
+
+    if (chartRef.current && chartRef.current.chartInstance) {
+      chartRef.current.chartInstance.destroy();
     }
 
-    // Chart.js setup
-    const ctx = chartRef.current.getContext("2d");
-    chartInstance.current = new Chart(ctx, {
-      type: "bar", // Set the chart type to horizontal bar
+    chartRef.current.chartInstance = new Chart(ctx, {
+      type: 'bar',
       data: {
-        labels: labelsProp,
-        datasets: [
-          {
-            label: "Horizontal Bar Chart Example",
-            data: dataProp,
-            backgroundColor: [Colors.lightNavyBlue],
-            borderColor: Colors.navyBlue,
-            borderWidth: 1,
-          },
-        ],
+        labels: labels,
+        datasets: [{
+          label: 'Count',
+          data: data,
+          backgroundColor: [
+            'rgba(75, 192, 192, 0.2)', // trees
+            'rgba(255, 206, 86, 0.2)'  // gardens
+          ],
+          borderColor: [
+            'rgba(75, 192, 192, 1)',
+            'rgba(255, 206, 86, 1)'  
+          ],
+          borderWidth: 1
+        }]
       },
       options: {
-        indexAxis: "y",
+        indexAxis: 'y', 
         scales: {
-          y: {
-            grid: {
-              display: false,
-            },
-          },
           x: {
             beginAtZero: true,
+
             grid: {
-              display: false,
-            },
+              display: false
+            }
+            
           },
+          y: {
+            grid: {
+              display: false
+            }
+          }
+
         },
-      },
+        plugins: {
+          legend: {
+            display: true,
+            position: 'bottom'
+          }
+        }
+      }
     });
 
-    // Cleanup the chart instance when the component unmounts
     return () => {
-      if (chartInstance.current) {
-        chartInstance.current.destroy();
-      }
+      chartRef.current.chartInstance.destroy();
     };
-  }, []); // Empty dependency array to run the effect only once
+  }, [data, labels]); // Dependency array to re-render chart on data/labels change
 
-  return (
-    <div>
-      <canvas ref={chartRef} width="400" height="300"></canvas>
-    </div>
-  );
+  return <canvas ref={chartRef}></canvas>;
 };
 
 export default HorizontalBarChart;

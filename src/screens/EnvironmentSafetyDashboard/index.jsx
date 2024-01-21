@@ -13,6 +13,15 @@ const EnvironmentSafetyDashboard = () => {
   // from the postal code entered by the user, going to get the data associated to that postal code 
   const [postalCodeData, setPostalCodeData] = useState({ publicTrees: '', communityGardens: '' });
 
+  // storing the values into variables
+  const publicTrees = postalCodeData.publicTrees;
+  const communityGardens = postalCodeData.communityGardens;
+
+  // labels for the chart 
+  const chartData = [publicTrees, communityGardens];
+  const chartLabels = ['Public Trees', 'Community Gardens'];
+
+
   useEffect(() => {
     if (postalCode) {
       const data = getPostalCodeData(postalCode);
@@ -50,7 +59,7 @@ const EnvironmentSafetyDashboard = () => {
           </Grid>
           <Grid item xs={12} md={12}>
             <Paper elevation={0} style={styles.card_three}>
-              <HorizontalBarChart />
+              <HorizontalBarChart data={chartData} labels={chartLabels} />
             </Paper>
           </Grid>
         </Grid>
