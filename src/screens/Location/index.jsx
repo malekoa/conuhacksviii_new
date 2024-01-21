@@ -1,30 +1,65 @@
+import React, { useState, useEffect } from 'react';
 import { Grid, Paper, Typography } from "@mui/material";
-import HorizontalBarChart from "../../components/HorizontalBarChart";
-import Statistics from "../../components/Statistics";
-import { usePostalCode } from "../../context/PostalCodeContext";
-import { Colors } from "../../styles/theme";
-import styles from "./Location.styles";
+import HorizontalBarChart from "./HorizontalBarChart"; 
+import styles from "./Location.styles"; 
+import { usePostalCode } from "../../context/PostalCodeContext"; 
+import { Colors } from "../../styles/theme"; 
+import { getPostalCodeData } from "./dataUtilities"; 
 
-const Location = () => {
-  // Use the usePostalCode hook to get the postal code from the context
+const LocationDashboard = () => {
+  // postal code from user 
   const { postalCode } = usePostalCode();
+
+  // from the postal code entered by the user, going to get the data associated to that postal code 
+  const [postalCodeData, setPostalCodeData] = useState({ trafficLights: '', evChargers: '' });
+
+  // storing the values into variables
+  const trafficLights = postalCodeData.trafficLights;
+  const evChargers = postalCodeData.evChargers;
+
+  // labels for the chart 
+  const chartData = [trafficLights, evChargers];
+  const chartLabels = ['Traffic Lights', 'EV Chargers'];
+
+
+  useEffect(() => {
+    if (postalCode) {
+      const data = getPostalCodeData(postalCode);
+      if (data) {
+        setPostalCodeData(data);
+      }
+    }
+  }, [postalCode]);
 
   return (
     <div>
       <div style={styles.backgroundImg} />
       <div style={styles.container}>
-        <Typography variant="h5" color={Colors.navyBlue}>
-          Location Statistics for Postal Code: {postalCode}
-        </Typography>
+
         <Grid container spacing={2}>
           <Grid item xs={12} md={12}>
-            <Paper elevation={0} style={styles.card}>
-              <Statistics />
+            <Paper elevation={0} style={styles.card_one}>
+              <Typography variant="h5" color={Colors.navyBlue}>
+                Environmental Statistics for Postal Code: {postalCode}
+              </Typography>
             </Paper>
           </Grid>
           <Grid item xs={12} md={12}>
-            <Paper elevation={0} style={styles.card}>
-              <HorizontalBarChart />
+            <Paper elevation={0} style={styles.card_one}>
+              <Typography variant="h6">
+                Traffic Lights: {postalCodeData.trafficLights}
+              </Typography>
+            </Paper>
+            <br/>
+            <Paper elevation={0} style={styles.card_one}>
+              <Typography variant="h6">
+                  EV Chargers: {postalCodeData.evChargers}
+              </Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={12}>
+            <Paper elevation={0} style={styles.card_three}>
+              <HorizontalBarChart data={chartData} labels={chartLabels} />
             </Paper>
           </Grid>
         </Grid>
@@ -33,4 +68,4 @@ const Location = () => {
   );
 };
 
-export default Location;
+export default LocationDashboard;
