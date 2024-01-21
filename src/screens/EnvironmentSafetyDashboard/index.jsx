@@ -4,7 +4,7 @@ import HorizontalBarChart from "./HorizontalBarChart";
 import styles from "./Environment.styles"; 
 import { usePostalCode } from "../../context/PostalCodeContext"; 
 import { Colors } from "../../styles/theme"; 
-import { getPostalCodeData } from "../../data/dataUtilities"; 
+import { getPostalCodeData } from "./dataUtilities"; 
 
 const EnvironmentSafetyDashboard = () => {
   // postal code from user 
