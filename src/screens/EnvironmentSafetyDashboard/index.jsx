@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Paper, Typography } from "@mui/material";
-import HorizontalBarChart from "../../components/HorizontalBarChart"; 
+import HorizontalBarChart from "./HorizontalBarChart"; 
 import styles from "./Environment.styles"; 
 import { usePostalCode } from "../../context/PostalCodeContext"; 
 import { Colors } from "../../styles/theme"; 
