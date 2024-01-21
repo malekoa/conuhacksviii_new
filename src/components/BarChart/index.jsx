@@ -2,15 +2,19 @@ import { useEffect, useRef } from "react";
 import { Colors } from "../../styles/theme";
 import Chart from "chart.js/auto";
 
-const BarChart = () => {
+const BarChart = (props) => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
-  let labelsProp = props.labelsProp;
-  let dataProp = props.dataProp;
 
-  console.log(labelsProp);
 
   useEffect(() => {
+    // let labelsProp = props.labelsProp;
+    // let dataProp = props.dataProp;
+
+    // console.log(`labels: ${props.labelsProp}`); 
+    // console.log(`data: ${props.dataProp}`);
+    //if (props.dataProp) console.log(Arrays.isArray(props.dataProp))
+
     // Check if a chart instance already exists, and destroy it if it does
     if (chartInstance.current) {
       chartInstance.current.destroy();
@@ -21,11 +25,11 @@ const BarChart = () => {
     chartInstance.current = new Chart(ctx, {
       type: "bar",
       data: {
-        labels: ["Label 1", "Label 2", "Label 3", "Label 4", "Label 5"],
+        labels: props.labelsProp,
         datasets: [
           {
             label: "Bar Chart Example",
-            data: [12, 19, 3, 5, 2],
+            data: props.dataProp,
             backgroundColor: Colors.lightNavyBlue,
             borderColor: Colors.navyBlue,
             borderWidth: 1,
@@ -36,14 +40,14 @@ const BarChart = () => {
         scales: {
           x: {
             grid: {
-              display: false
-            }
+              display: false,
+            },
           },
           y: {
             beginAtZero: true,
             grid: {
-              display: false
-            }
+              display: false,
+            },
           },
         },
       },
@@ -55,7 +59,7 @@ const BarChart = () => {
         chartInstance.current.destroy();
       }
     };
-  }, []); // Empty dependency array to run the effect only once
+  }, [props.labelsProp, props.dataProp]); // Empty dependency array to run the effect only once
 
   return (
     <div>
