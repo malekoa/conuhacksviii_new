@@ -7,16 +7,19 @@ import HorizontalBarChart from "../../components/HorizontalBarChart";
 import { Colors } from "../../styles/theme";
 import Statistics from "../../components/Statistics";
 import { isPostalCodeExist, getPostalCodeData } from "../../data/dataUtilities";
+import { usePostalCode } from "../../context/PostalCodeContext";
 import styles from "./Dashboard.styles";
 
 const Dashboard = () => {
   const [searchResults, setSearchResults] = useState("");
+  const { setPostalCodeValue } = usePostalCode();
 
   const handleEnterPressed = (value) => {
     const postalCode = isPostalCodeExist(value);
     if (postalCode) {
       setSearchResults(`Results for postal code ${value.toUpperCase()}`);
       getPostalCodeData(value);
+      setPostalCodeValue(value);
     } else {
       setSearchResults(
         `No results exist for the postal code ${value.toUpperCase()} you entered.`
@@ -42,47 +45,17 @@ const Dashboard = () => {
           </Grid>
           <Grid item xs={12} md={5}>
             <Paper elevation={0} style={styles.card}>
-              {/* TODO: */}
-              <HorizontalBarChart
-                dataProp={[12, 19, 3, 5, 8, 15, 7, 10, 6, 9]}
-                labelsProp={[
-                  "Label 1",
-                  "Label 2",
-                  "Label 3",
-                  "Label 4",
-                  "Label 5",
-                  "Label 6",
-                  "Label 7",
-                  "Label 8",
-                  "Label 9",
-                  "Label 10",
-                ]}
-              />
+              <HorizontalBarChart />
             </Paper>
           </Grid>
           <Grid item xs={12} md={5}>
             <Paper elevation={0} style={styles.card}>
-              <DonutChart
-                labelsProp={["1", "2", "3", "4"]}
-                dataProp={[12, 19, 3, 5]}
-              />
+              <DonutChart />
             </Paper>
           </Grid>
           <Grid item xs={12} md={4}>
             <Paper elevation={0} style={styles.card}>
-              <BarChart
-                labelsProp={[
-                  "Label 1",
-                  "Label 2",
-                  "Label 3",
-                  "Label 4",
-                  "Label 5",
-                  "Label 5",
-                  "Label 5",
-                  "Label 5",
-                ]}
-                dataProp={[12, 19, 3, 5, 2]}
-              />
+              <BarChart />
             </Paper>
           </Grid>
           <Grid item xs={12} md={8}>
