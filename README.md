@@ -1,6 +1,6 @@
 # ShouldIMove
 
-<img width="819" alt="Screen Shot 2024-01-21 at 6 53 13 AM" src="https://github.com/malekoa/conuhacksviii_new/assets/70773705/dc3531a0-8320-41df-b5db-17837f758b63">
+<img width="872" alt="Screen Shot 2024-01-21 at 7 00 08 AM" src="https://github.com/malekoa/conuhacksviii_new/assets/70773705/ae265069-ca6e-4a0e-96cb-9a51f08e5427">
 
 ## What it does
 ShouldIMove provides users with a user-friendly dashboard showcasing statistics for different postal codes. By inputting a specific postal code, users gain access to a rich array of data.
