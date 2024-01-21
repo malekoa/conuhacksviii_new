@@ -15,11 +15,13 @@ const HorizontalBarChart = ({ data, labels }) => {
           data: data,
           backgroundColor: [
             'rgba(75, 192, 192, 0.2)',
-            'rgba(255, 206, 86, 0.2)'
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(255, 216, 83, 0.3)'
           ],
           borderColor: [
             'rgba(75, 192, 192, 1)',
-            'rgba(255, 206, 86, 1)'
+            'rgba(255, 206, 86, 1)', 
+            'rgba(255, 216, 83, 1)'
           ],
           borderWidth: 1
         }]

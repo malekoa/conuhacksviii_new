@@ -12,10 +12,11 @@ const getPostalCodeData = (postal_code) => {
     // data from dictionary
     const trafficLights = entry["Pedestrian traffic lights"];
     const evChargers = entry["Electric vehicle chargers"];
+    const commGardens = entry["Community gardens"]
 
 
-    console.log(`Number of Traffic Lights: ${trafficLights}, Number of EV Chargers: ${evChargers}`);
-    return { trafficLights, evChargers };
+    console.log(`Number of Traffic Lights: ${trafficLights}, Number of EV Chargers: ${evChargers}, Number of Community Gardens: ${commGardens}`);
+    return { trafficLights, evChargers, commGardens };
   } else {
     console.log(`Postal code ${postal_code} does not exist.`);
     return null;

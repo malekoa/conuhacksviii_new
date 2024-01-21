@@ -11,15 +11,16 @@ const LocationDashboard = () => {
   const { postalCode } = usePostalCode();
 
   // from the postal code entered by the user, going to get the data associated to that postal code 
-  const [postalCodeData, setPostalCodeData] = useState({ trafficLights: '', evChargers: '' });
+  const [postalCodeData, setPostalCodeData] = useState({ trafficLights: '', evChargers: '', commGardens: '' });
 
   // storing the values into variables
   const trafficLights = postalCodeData.trafficLights;
   const evChargers = postalCodeData.evChargers;
+  const commGardens = postalCodeData.commGardens;
 
   // labels for the chart 
-  const chartData = [trafficLights, evChargers];
-  const chartLabels = ['Traffic Lights', 'EV Chargers'];
+  const chartData = [trafficLights, evChargers, commGardens];
+  const chartLabels = ['Traffic Lights', 'EV Chargers', 'Community Gardens'];
 
 
   useEffect(() => {
@@ -54,6 +55,12 @@ const LocationDashboard = () => {
             <Paper elevation={0} style={styles.card_one}>
               <Typography variant="h6">
                   EV Chargers: {postalCodeData.evChargers}
+              </Typography>
+            </Paper>
+            <br/>
+            <Paper elevation={0} style={styles.card_one}>
+              <Typography variant="h6">
+                  Community Gardens: {postalCodeData.commGardens}
               </Typography>
             </Paper>
           </Grid>
