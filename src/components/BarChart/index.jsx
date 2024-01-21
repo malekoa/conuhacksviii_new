@@ -8,52 +8,70 @@ const BarChart = (props) => {
 
 
   useEffect(() => {
+  // Check if a chart instance already exists, and destroy it if it does
+  if (chartInstance.current) {
+    chartInstance.current.destroy();
+  }
 
-    // Check if a chart instance already exists, and destroy it if it does
-    if (chartInstance.current) {
-      chartInstance.current.destroy();
+  // Filter data for specific categories
+  const filteredLabels = [];
+  const filteredData = [];
+
+  props.labelsProp.forEach((label, index) => {
+    const category = label.toLowerCase();
+    if (
+      category === "pedestrian traffic lights" ||
+      category === "number of public trees" ||
+      category === "electric vehicle chargers" ||
+      category === "collisions involving pedestrians" ||
+      category === "coyote sightings"
+    ) {
+      filteredLabels.push(label);
+      filteredData.push(props.dataProp[index]);
     }
+  });
 
-    // Chart.js setup
-    const ctx = chartRef.current.getContext("2d");
-    chartInstance.current = new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels: props.labelsProp,
-        datasets: [
-          {
-            label: "Bar Chart Example",
-            data: props.dataProp,
-            backgroundColor: Colors.lightNavyBlue,
-            borderColor: Colors.navyBlue,
-            borderWidth: 1,
+  // Chart.js setup
+  const ctx = chartRef.current.getContext("2d");
+  chartInstance.current = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: filteredLabels,
+      datasets: [
+        {
+          label: "Services Provided",
+          data: filteredData,
+          backgroundColor: Colors.lightNavyBlue,
+          borderColor: Colors.navyBlue,
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        x: {
+          grid: {
+            display: false,
           },
-        ],
-      },
-      options: {
-        scales: {
-          x: {
-            grid: {
-              display: false,
-            },
-          },
-          y: {
-            beginAtZero: true,
-            grid: {
-              display: false,
-            },
+        },
+        y: {
+          beginAtZero: true,
+          grid: {
+            display: false,
           },
         },
       },
-    });
+    },
+  });
 
-    // Cleanup the chart instance when the component unmounts
-    return () => {
-      if (chartInstance.current) {
-        chartInstance.current.destroy();
-      }
-    };
-  }, [props.labelsProp, props.dataProp]); // Empty dependency array to run the effect only once
+  // Cleanup the chart instance when the component unmounts
+  return () => {
+    if (chartInstance.current) {
+      chartInstance.current.destroy();
+    }
+  };
+}, [props.labelsProp, props.dataProp]);
+
 
   return (
     <div>
