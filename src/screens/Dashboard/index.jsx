@@ -14,11 +14,20 @@ const Dashboard = () => {
   const [searchResults, setSearchResults] = useState("");
   const { setPostalCodeValue } = usePostalCode();
 
+  const [queryKeys, setQueryKeys] = useState('')
+  const [queryVals, setQueryVals] = useState('')
+
   const handleEnterPressed = (value) => {
     const postalCode = isPostalCodeExist(value);
     if (postalCode) {
       setSearchResults(`Results for postal code ${value.toUpperCase()}`);
-      getPostalCodeData(value);
+      let results = getPostalCodeData(value);
+      let k = Object.keys(results)
+      let v = Object.values(results)
+      setQueryKeys(k)
+      setQueryVals(v)
+
+      //console.log(results)
       setPostalCodeValue(value);
     } else {
       setSearchResults(
@@ -45,7 +54,7 @@ const Dashboard = () => {
           </Grid>
           <Grid item xs={12} md={5}>
             <Paper elevation={0} style={styles.card}>
-              <HorizontalBarChart />
+              <HorizontalBarChart labelsProp={queryKeys} dataProp={queryVals} />
             </Paper>
           </Grid>
           <Grid item xs={12} md={5}>
@@ -55,7 +64,7 @@ const Dashboard = () => {
           </Grid>
           <Grid item xs={12} md={4}>
             <Paper elevation={0} style={styles.card}>
-              <BarChart />
+              <BarChart labelsProp={queryKeys} dataProp={queryVals} />
             </Paper>
           </Grid>
           <Grid item xs={12} md={8}>
@@ -72,6 +81,8 @@ const Dashboard = () => {
                     Interesting Statistics
                   </Typography>
                   <Typography variant={"body1"} color={Colors.navyBlue} mt={5}>
+                    The most discriminating feature across postal codes is <strong>bedbug exterminations</strong>.
+                    <br />
                     Pedestrian collisions are <strong>83%</strong> correlated
                     with robberies
                     <br />

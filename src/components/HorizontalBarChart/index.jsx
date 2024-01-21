@@ -3,7 +3,7 @@ import { Colors } from "../../styles/theme";
 import Chart from "chart.js/auto";
 
 // add props "labels" and "data" to this component
-const HorizontalBarChart = ({ labelsProp, dataProp }) => {
+const HorizontalBarChart = (props) => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
 
@@ -18,11 +18,11 @@ const HorizontalBarChart = ({ labelsProp, dataProp }) => {
     chartInstance.current = new Chart(ctx, {
       type: "bar", // Set the chart type to horizontal bar
       data: {
-        labels: labelsProp,
+        labels: props.labelsProp,
         datasets: [
           {
             label: "Horizontal Bar Chart Example",
-            data: dataProp,
+            data: props.dataProp,
             backgroundColor: [Colors.lightNavyBlue],
             borderColor: Colors.navyBlue,
             borderWidth: 1,
@@ -53,11 +53,11 @@ const HorizontalBarChart = ({ labelsProp, dataProp }) => {
         chartInstance.current.destroy();
       }
     };
-  }, []); // Empty dependency array to run the effect only once
+  }, [props.labelsProp, props.dataProp]); // Empty dependency array to run the effect only once
 
   return (
     <div>
-      <canvas ref={chartRef} width="400" height="300"></canvas>
+      <canvas ref={chartRef} width="300" height="300"></canvas>
     </div>
   );
 };
