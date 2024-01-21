@@ -1,7 +1,7 @@
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
-import styles from "./SearchBar.styles";
+import styles from "./Searchbar.styles";
 
 // eslint-disable-next-line react/prop-types
 const Search = ({ onEnterPressed }) => {

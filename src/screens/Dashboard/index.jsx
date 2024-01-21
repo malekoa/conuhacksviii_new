@@ -22,10 +22,11 @@ const Dashboard = () => {
     if (postalCode) {
       setSearchResults(`Results for postal code ${value.toUpperCase()}`);
       let results = getPostalCodeData(value);
-      let k = Object.keys(results);
-      let v = Object.values(results);
-      setQueryKeys(k);
-      setQueryVals(v);
+      let k = Object.keys(results)
+      let v = Object.values(results)
+      setQueryKeys(k)
+      setQueryVals(v)
+
 
       //console.log(results)
       setPostalCodeValue(value);
@@ -49,17 +50,17 @@ const Dashboard = () => {
         <Grid container spacing={2}>
           <Grid item xs={12} md={2}>
             <Paper elevation={0} style={styles.card}>
-              <Statistics />
+              <Statistics postalCode={queryVals[0]} trees={queryVals[3]} />
             </Paper>
           </Grid>
           <Grid item xs={12} md={5}>
             <Paper elevation={0} style={styles.card}>
-              <HorizontalBarChart />
+              <HorizontalBarChart labelsProp={queryKeys} dataProp={queryVals} />
             </Paper>
           </Grid>
           <Grid item xs={12} md={5}>
             <Paper elevation={0} style={styles.card}>
-              <DonutChart />
+              <DonutChart labelsProp={queryKeys} dataProp={queryVals} />
             </Paper>
           </Grid>
           <Grid item xs={12} md={4}>
@@ -81,8 +82,8 @@ const Dashboard = () => {
                     Interesting Statistics
                   </Typography>
                   <Typography variant={"body1"} color={Colors.navyBlue} mt={5}>
-                    The most discriminating feature across postal codes is{" "}
-                    <strong>bedbug exterminations</strong>.
+                    The most discriminating feature across postal codes is <strong>bedbug exterminations</strong>.
+
                     <br />
                     Pedestrian collisions are <strong>83%</strong> correlated
                     with robberies

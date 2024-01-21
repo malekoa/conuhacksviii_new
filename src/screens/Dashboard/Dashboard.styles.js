@@ -31,7 +31,7 @@ const styles = {
     borderRadius: "15px",
     height: "300px",
     boxShadow: Colors.shadow,
-    padding: "10px",
+    padding: "5px",
   }
 };
 

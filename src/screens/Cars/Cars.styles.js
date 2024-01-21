@@ -24,7 +24,27 @@ const styles = {
     left: 0,
     zIndex: -1,
   },
-  card: {
+  card_one: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: "15px",
+    height: "50px",
+    boxShadow: Colors.shadow,
+    padding: "10px",
+  },
+
+  card_two: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: "15px",
+    height: "300px",
+    boxShadow: Colors.shadow,
+    padding: "10px",
+  },
+
+  card_three: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
