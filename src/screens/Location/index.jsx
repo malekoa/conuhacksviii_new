@@ -1,9 +1,9 @@
 import { Grid, Paper, Typography } from "@mui/material";
 import HorizontalBarChart from "../../components/HorizontalBarChart";
 import Statistics from "../../components/Statistics";
-import styles from "./Location.styles";
 import { usePostalCode } from "../../context/PostalCodeContext";
 import { Colors } from "../../styles/theme";
+import styles from "./Location.styles";
 
 const Location = () => {
   // Use the usePostalCode hook to get the postal code from the context
