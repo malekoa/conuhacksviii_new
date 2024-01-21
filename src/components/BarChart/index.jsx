@@ -25,11 +25,12 @@ const BarChart = (props) => {
     chartInstance.current = new Chart(ctx, {
       type: "bar",
       data: {
-        labels: labels,
+        labels: props.labelsProp,
         datasets: [
           {
-            label: "Bar Chart Example",
-            data: data,
+            label: "Services Provided",
+            data: props.dataProp,
+
             backgroundColor: Colors.lightNavyBlue,
             borderColor: Colors.navyBlue,
             borderWidth: 1,
@@ -63,7 +64,7 @@ const BarChart = (props) => {
 
   return (
     <div>
-      <canvas ref={chartRef} width="250" height="250"></canvas>
+      <canvas ref={chartRef} width="300" height="280"></canvas>
     </div>
   );
 };

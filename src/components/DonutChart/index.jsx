@@ -5,8 +5,26 @@ import Chart from "chart.js/auto";
 const DonutChart = (props) => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
-  let labelsProp = props.labelsProp;
-  let dataProp = props.dataProp;
+
+  // Define the categories you want to display
+  const desiredCategories = [
+    "Thefts inside motor vehicle",
+    "Robberies",
+    "Collisions involving pedestrians",
+    "Breaking and entering",
+  ];
+
+  // Check if labelsProp is an array before filtering
+  const filteredLabels =
+    Array.isArray(props.labelsProp) &&
+    props.labelsProp.filter((label) => desiredCategories.includes(label));
+
+  // Check if dataProp is an array before filtering
+  const filteredData =
+    Array.isArray(props.dataProp) &&
+    props.dataProp.filter((data, index) =>
+      filteredLabels.includes(props.labelsProp[index])
+    );
 
   useEffect(() => {
     // Check if a chart instance already exists, and destroy it if it does
@@ -17,13 +35,13 @@ const DonutChart = (props) => {
     // Chart.js setup
     const ctx = chartRef.current.getContext("2d");
     chartInstance.current = new Chart(ctx, {
-      type: "doughnut", // Set the chart type to doughnut
+      type: "doughnut",
       data: {
-        labels: labelsProp,
+        labels: filteredLabels,
         datasets: [
           {
             label: "Donut Chart Example",
-            data: dataProp,
+            data: filteredData || [1,2,3,4],
             backgroundColor: [
               Colors.lightNavyBlue,
               Colors.navyBlue,
@@ -46,7 +64,7 @@ const DonutChart = (props) => {
         chartInstance.current.destroy();
       }
     };
-  }, []); // Empty dependency array to run the effect only once
+  }, [filteredLabels, filteredData]);
 
   return (
     <div>
