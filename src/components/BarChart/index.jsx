@@ -2,14 +2,13 @@ import { useEffect, useRef } from "react";
 import { Colors } from "../../styles/theme";
 import Chart from "chart.js/auto";
 
-const BarChart = (props) => {
+const BarChart = () => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
   let labelsProp = props.labelsProp;
   let dataProp = props.dataProp;
 
   console.log(labelsProp);
-  console.log(dataProp);
 
   useEffect(() => {
     // Check if a chart instance already exists, and destroy it if it does
@@ -22,11 +21,11 @@ const BarChart = (props) => {
     chartInstance.current = new Chart(ctx, {
       type: "bar",
       data: {
-        labels: labelsProp,
+        labels: ["Label 1", "Label 2", "Label 3", "Label 4", "Label 5"],
         datasets: [
           {
             label: "Bar Chart Example",
-            data: dataProp,
+            data: [12, 19, 3, 5, 2],
             backgroundColor: Colors.lightNavyBlue,
             borderColor: Colors.navyBlue,
             borderWidth: 1,
@@ -37,14 +36,14 @@ const BarChart = (props) => {
         scales: {
           x: {
             grid: {
-              display: false,
-            },
+              display: false
+            }
           },
           y: {
             beginAtZero: true,
             grid: {
-              display: false,
-            },
+              display: false
+            }
           },
         },
       },
