@@ -57,7 +57,7 @@ const BarChart = (props) => {
 
   return (
     <div>
-      <canvas ref={chartRef} width="250" height="250"></canvas>
+      <canvas ref={chartRef} width="300" height="280"></canvas>
     </div>
   );
 };

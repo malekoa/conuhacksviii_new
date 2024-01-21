@@ -57,7 +57,7 @@ const HorizontalBarChart = (props) => {
 
   return (
     <div>
-      <canvas ref={chartRef} width="300" height="300"></canvas>
+      <canvas ref={chartRef} width="400" height="300"></canvas>
     </div>
   );
 };

@@ -41,7 +41,7 @@ const DonutChart = (props) => {
         datasets: [
           {
             label: "Donut Chart Example",
-            data: filteredData,
+            data: filteredData || [1,2,3,4],
             backgroundColor: [
               Colors.lightNavyBlue,
               Colors.navyBlue,
