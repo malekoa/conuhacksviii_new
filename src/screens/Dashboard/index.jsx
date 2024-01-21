@@ -13,9 +13,8 @@ import styles from "./Dashboard.styles";
 const Dashboard = () => {
   const [searchResults, setSearchResults] = useState("");
   const { setPostalCodeValue } = usePostalCode();
-
-  const [queryKeys, setQueryKeys] = useState('')
-  const [queryVals, setQueryVals] = useState('')
+  const [queryKeys, setQueryKeys] = useState('');
+  const [queryVals, setQueryVals] = useState('');
 
   const handleEnterPressed = (value) => {
     const postalCode = isPostalCodeExist(value);
@@ -49,7 +48,7 @@ const Dashboard = () => {
         <Grid container spacing={2}>
           <Grid item xs={12} md={2}>
             <Paper elevation={0} style={styles.card}>
-              <Statistics />
+              <Statistics postalCode={queryVals[0]} trees={queryVals[3]} />
             </Paper>
           </Grid>
           <Grid item xs={12} md={5}>
