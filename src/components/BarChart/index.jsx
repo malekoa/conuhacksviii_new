@@ -5,12 +5,16 @@ import Chart from "chart.js/auto";
 const BarChart = (props) => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
-  let labelsProp = props.labelsProp;
-  let dataProp = props.dataProp;
-
-  console.log(labelsProp);
 
   useEffect(() => {
+    // Convert labels and data to arrays if they are not already
+    const labels = Array.isArray(props.labelsProp)
+      ? props.labelsProp
+      : [props.labelsProp];
+    const data = Array.isArray(props.dataProp)
+      ? props.dataProp
+      : [props.dataProp];
+
     // Check if a chart instance already exists, and destroy it if it does
     if (chartInstance.current) {
       chartInstance.current.destroy();
@@ -21,11 +25,11 @@ const BarChart = (props) => {
     chartInstance.current = new Chart(ctx, {
       type: "bar",
       data: {
-        labels: labelsProp,
+        labels: labels,
         datasets: [
           {
             label: "Bar Chart Example",
-            data: dataProp,
+            data: data,
             backgroundColor: Colors.lightNavyBlue,
             borderColor: Colors.navyBlue,
             borderWidth: 1,
@@ -55,7 +59,7 @@ const BarChart = (props) => {
         chartInstance.current.destroy();
       }
     };
-  }, []); // Empty dependency array to run the effect only once
+  }, [props.labelsProp, props.dataProp]); // Empty dependency array to run the effect only once
 
   return (
     <div>
