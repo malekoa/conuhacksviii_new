@@ -11,7 +11,7 @@ const HorizontalBarChart = ({ data, labels }) => {
       data: {
         labels: labels,
         datasets: [{
-          label: '# of Items',
+          label: '',
           data: data,
           backgroundColor: [
             'rgba(75, 192, 192, 0.2)',
