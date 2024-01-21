@@ -9,6 +9,7 @@ const BarChart = (props) => {
   let dataProp = props.dataProp;
 
   console.log(labelsProp);
+  console.log(dataProp);
 
   useEffect(() => {
     // Check if a chart instance already exists, and destroy it if it does
