@@ -7,6 +7,14 @@ const BarChart = (props) => {
   const chartInstance = useRef(null);
 
   useEffect(() => {
+    // Convert labels and data to arrays if they are not already
+    const labels = Array.isArray(props.labelsProp)
+      ? props.labelsProp
+      : [props.labelsProp];
+    const data = Array.isArray(props.dataProp)
+      ? props.dataProp
+      : [props.dataProp];
+
     // Check if a chart instance already exists, and destroy it if it does
     if (chartInstance.current) {
       chartInstance.current.destroy();
@@ -22,6 +30,7 @@ const BarChart = (props) => {
           {
             label: "Services Provided",
             data: props.dataProp,
+
             backgroundColor: Colors.lightNavyBlue,
             borderColor: Colors.navyBlue,
             borderWidth: 1,

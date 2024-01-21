@@ -16,6 +16,9 @@ const Dashboard = () => {
   const [queryKeys, setQueryKeys] = useState('');
   const [queryVals, setQueryVals] = useState('');
 
+  const [queryKeys, setQueryKeys] = useState("");
+  const [queryVals, setQueryVals] = useState("");
+
   const handleEnterPressed = (value) => {
     const postalCode = isPostalCodeExist(value);
     if (postalCode) {
@@ -25,6 +28,7 @@ const Dashboard = () => {
       let v = Object.values(results)
       setQueryKeys(k)
       setQueryVals(v)
+
 
       //console.log(results)
       setPostalCodeValue(value);
@@ -81,6 +85,7 @@ const Dashboard = () => {
                   </Typography>
                   <Typography variant={"body1"} color={Colors.navyBlue} mt={5}>
                     The most discriminating feature across postal codes is <strong>bedbug exterminations</strong>.
+
                     <br />
                     Pedestrian collisions are <strong>83%</strong> correlated
                     with robberies
