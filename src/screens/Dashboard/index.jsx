@@ -13,8 +13,6 @@ import styles from "./Dashboard.styles";
 const Dashboard = () => {
   const [searchResults, setSearchResults] = useState("");
   const { setPostalCodeValue } = usePostalCode();
-  const [queryKeys, setQueryKeys] = useState('');
-  const [queryVals, setQueryVals] = useState('');
 
   const [queryKeys, setQueryKeys] = useState("");
   const [queryVals, setQueryVals] = useState("");
