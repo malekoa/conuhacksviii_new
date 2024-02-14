@@ -24,6 +24,17 @@ const Dashboard = () => {
       let results = getPostalCodeData(value);
       let k = Object.keys(results)
       let v = Object.values(results)
+
+      v.forEach((val, i) => {
+        if (val > 1000) {
+          v[i] = v[i] / 1000
+          k[i] = k[i] + ' (k)'
+        } else if (val > 100) {
+          v[i] = v[i] / 100
+          k[i] = k[i] + ' (hnd)'
+        }
+      })
+
       setQueryKeys(k)
       setQueryVals(v)
 

@@ -18,7 +18,7 @@ const Statistics = ({ postalCode, trees }) => {
             {trees || "-"}
           </Typography>
           <Typography variant={"body1"} color={Colors.navyBlue}>
-            Number of public trees
+            Number of public trees (k)
           </Typography>
         </Grid>
       </Grid>
